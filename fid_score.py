@@ -107,7 +107,7 @@ def get_activations(files, model, batch_size=50, dims=2048,
         start = i * batch_size
         end = start + batch_size
 
-        images = np.array([imread(str(f)).astype(np.float32)
+        images = np.array([np.stack((imread(str(f)).astype(np.float32),)*3, axis=-1)
                            for f in files[start:end]])
 
         # Reshape to (n_images, 3, height, width)
